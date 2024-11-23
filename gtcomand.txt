@@ -1,0 +1,20 @@
+git init => start
+git add . => add file 
+git commit -m "msg" =>tracked file
+git log => hisstory
+git checkout 
+git status -s => last status
+git rm -cached /file => restore files
+git remote add origin https://github.com/haron343/testw.git => add to github
+git branch -M main => chose branch name
+git push -u origin main => add to branch "online"
+git reset --mixed origin/main
+
+"<--! git error: failed to push some refs to remote !-->
+##-----------------------------------------------------##
+git reset --mixed origin/main
+git add .
+git commit -m "This is a new commit for what I originally planned to be amended"
+git push origin main
+
+"
