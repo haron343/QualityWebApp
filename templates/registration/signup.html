@@ -1,0 +1,60 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static 'css/bootstrap.css' %}">
+    <title>Document</title>
+</head>
+<body>
+
+
+<h1>Sign up</h1>
+
+
+<form class="form" method="POST" novalidate>
+  {% csrf_token %}
+ 
+<div class="container">
+  <div class="row">
+    <!--  -->
+
+    <div class="col-12 mt-4 mx-auto">
+      {{form.as_p}}
+    
+    </div>
+   
+    
+    
+  <button class="btn btn-primary" type="submit" >
+    Submit
+  </button>
+</div>
+    
+ 
+</form>
+
+
+<!-- <div class="col-12 mt-4 mx-auto">
+  <input class="form-control" type="text" name="username" id="username">
+</div>
+<div class="col-12 mt-4 mx-auto">
+  <input class="form-control" type="password" name="password1" id="password1">
+</div>
+</div>
+<div class="col-12 mt-4 mx-auto">
+<input class="form-control" type="password" name="password1" id="password1">
+</div> -->
+
+
+
+
+
+<script src="{% static 'js/bootstrap.js' %}"></script>
+</body>
+</html>
+
+
+

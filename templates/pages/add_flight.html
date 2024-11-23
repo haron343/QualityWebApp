@@ -1,0 +1,204 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<!--dir="rtl"-->
+<head>
+    <meta charset="UTF-8 ">
+
+    <link rel="stylesheet" href="{% static 'css/bootstrap.css' %}">
+    <title>Document</title>
+</head>
+
+<body>
+
+    <nav class="navbar navbar-expand-lg bg-body-tertiary">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="{% url 'reports:home'%}">Quality Web App</a>
+
+
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
+                aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                    <li class="nav-item">
+                        <a class="nav-link active" aria-current="page" href="{% url 'reports:home'%}">Home</a>
+                    </li>
+                    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                          <li class="nav-item">
+                            <a class="nav-link active" aria-current="page" href="{% url 'reports:add_note'%}">add note</a>
+                          </li> 
+                    <li class="nav-item">
+                        <a class="nav-link disabled text-info"><small>{{current_date}}</small></a>
+                    </li>
+                </ul>
+
+            </div>
+        </div>
+    </nav>
+<div class="container mx-auto">
+    <h3 >Add report</h3>
+</div>
+
+
+    <form class="form-control-lg mt-5" action="{% url 'reports:add_report' %}" method="POST">
+        {% csrf_token %}
+        <!-- إضافة هذا الكود لعرض رسائل الخطأ -->
+        <!-- <div class="container">
+            {{form}}
+        </div>
+        
+        <div class="btn align-items-center">
+            <button class="btn btn-outline-primary" type="submit" name='btnsubmit'>Submit</button>
+        </div> -->
+    
+    
+        <div class="form-control">
+            <div class="row ">
+
+                <div class="col-sm-4 col-lg">
+                    {{form.company}}
+                </div>
+                <div class="col-sm-4 col-lg">
+                    {{form.date}}
+                </div>
+                <div class="col-sm-4 col-lg">
+                    {{form.time}}
+                </div>
+                <div class="col-sm-4 col-lg">
+                    {{form.flight_number}}
+                </div>
+                <div class="col-sm-4 col-lg">
+                    {{form.f_from}}
+                </div>
+                <div class="col-sm-4 col-lg">
+                    {{form.f_to}}
+                </div>
+                <div class="col-sm-4 col-lg">
+                    {{form.stand}}
+                </div>
+                <div class="col-sm-4 col-lg">
+                    {{form.carrier_reg}}
+                </div>
+                <div class="col-sm-4 col-lg">
+                    {{form.carrier_type}}
+                </div>
+
+                <div class=" col-sm-3 col-lg-1">
+                    {{form.statues}}
+                </div>
+                <div class=" col-sm-3 col-lg-1">
+                    {{form.author}}
+                </div>
+
+                <div class="container">
+                <div class="row">
+              
+    <table class="table table-hover table-responsive-lg ">
+        <thead class="bg-secondary text-light ">
+            <th class="col "> الملاحظات</th>
+        </thead>
+        <tbody>
+            {% for item in form.observations  %}
+            <tr>
+            <td>
+                <div class="form-check">
+                    {{item}}
+                </div>
+            </td>
+        </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+  
+
+            </div>
+            <div class="btn align-items-center">
+                <button class="btn btn-outline-primary" type="submit" name='btnsubmit'>Submit</button>
+            </div>
+        </div>
+
+
+    </form>
+    
+    </form>
+
+    <script src="{% static 'js/bootstrap.js' %}"></script>
+</body>
+
+</html>
+
+{% comment %} {% if form.errors %}
+        <ul class="errorlist">
+            {% for field in form %}
+            {% if field.errors %}
+            <li>{{ field.label }}:
+                <ul>
+                    {% for error in field.errors %}
+                    <li>{{ error }}</li>
+                    {% endfor %}
+                </ul>
+            </li>
+            {% endif %}
+            {% endfor %}
+        </ul>
+        {% endif %}
+        <!-- نهاية كود عرض رسائل الخطأ -->
+
+        <div class="form-control">
+            <div class="row ">
+
+                <div class="col-sm-4 col-lg">
+                    {{form.company}}
+                </div>
+                <div class="col-sm-4 col-lg">
+                    {{form.date}}
+                </div>
+                <div class="col-sm-4 col-lg">
+                    {{form.time}}
+                </div>
+                <div class="col-sm-4 col-lg">
+                    {{form.flight_number}}
+                </div>
+                <div class="col-sm-4 col-lg">
+                    {{form.f_from}}
+                </div>
+                <div class="col-sm-4 col-lg">
+                    {{form.f_to}}
+                </div>
+                <div class="col-sm-4 col-lg">
+                    {{form.stand}}
+                </div>
+                <div class="col-sm-4 col-lg">
+                    {{form.carrier_reg}}
+                </div>
+                <div class="col-sm-4 col-lg">
+                    {{form.carrier_type}}
+                </div>
+                <div class=" col-sm-3 col-lg-1">
+                    {{form.statues}}
+                </div>
+                <div class=" col-sm-3 col-lg-1">
+                    {{form.author}}
+                </div>
+
+                <div class="form-check">
+                    {{form.Notess}}
+                </div>
+
+
+            </div>
+            <div class="btn align-items-center">
+                <button class="btn btn-outline-primary" type="submit" name='btnsubmit'>Submit</button>
+            </div>
+        </div>
+
+
+    </form>
+    {% for msg in error_message %}
+    {{msg}}
+    {% endfor %} {% endcomment %}

@@ -1,0 +1,145 @@
+{% load static %}
+{% load django_template_maths %}
+<!doctype html>
+<html lang="en" dir="rtl">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Bootstrap demo</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
+  </head>
+  <body>
+
+  <!-- navbar -->
+  <nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav">
+            <li class="nav-item active">
+                <a class="nav-link" href="{% url 'reports:home'%}">Home </a>
+            </li>
+        </ul>
+    </div>
+</nav>
+<!-- end navbar -->
+  <!-- head -->
+  <div class="container d-flex justify-content-around">
+
+  <p class="text-justify">
+    
+    <br>
+    <span>  {{end_date}}الى  {{start_date}}من </span>
+  </p>
+  
+</div>
+<hr>
+<!-- end head -->
+
+<!-- الملاحظات الاكثر تكرارية خلال فترة شهر -->
+<p>تم المرور على عدد {{counts}} رحلة خلال الفترة</p>
+<p>total_notes:{{total_notes}}</p>
+<p>top_notes:
+  pres{{pres}}
+</p>
+<h3>Top Notes:</h3>
+<div class="container">
+  <table class="table table-hover">
+    <thead>
+      <tr>
+  
+        <th scope="col">Note</th>
+        <th scope="col">Count</th>
+        <th scope="col">Percentage</th>
+  </tr>
+</thead>
+  {% for note in top_notes %}
+    <tr>
+      <td>{{ note.notes }}</td>
+      <td>{{ note.count }}</td>
+      <td>{{ note.percentage }}%</td>
+    </tr>
+  {% endfor %}
+</table>
+</div>
+<!-- الملاحظات الاكثر تكرارية خلال فترة شهر النهاية-->
+<hr>
+<!-- جدول التقارير -->
+{% for report in reports %}
+<div class="container">
+  <div class="row">
+
+    <table class="table table-hover table-responsive-lg ">
+        <thead  class="bg-secondary text-light ">
+            <tr >
+                <th class="col">شركة الطيران</th>
+                <th class="col">رقم الرحلة</th>
+                <th class="col">حروف التسجيل</th>
+                <th class="col">وصول/قيام</th>
+                <th class="col">قادمة من</th>
+                <th class="col"> متجهة الى</th>
+                <th class="col">التوقيت</th>
+                <th class="col">الموقع</th>
+                <th class="col">التاريخ</th>
+                
+            </tr>
+        </thead>
+        <tbody>
+            {% for item in report_data  %}{% endfor %}
+            <tr>
+                
+                <td>{{ report.company }}</td>
+                <td>{{ report.flight_number }}</td>
+                <td>{{ report.carrier_reg}}</td>
+                <td>{{report.statues}}</td>
+                <td>{{report.f_from}}</td>
+                <td>{{report.f_to}}</td>
+                <td>{{report.time}}</td>
+                <td>{{report.stand}}</td>
+                <td>{{report.date}}</td>
+    
+                 
+            </tr>
+        
+        </tbody>
+    </table>
+  <table>
+    <!-- قائمة بالملاحظات المختارة -->
+    {% for note in report.observations.all %}
+      <tr>
+        <td>{{ note }}</td>
+      </tr>
+    {% endfor %}
+  </table>
+{% endfor %}
+</div>
+</div>
+<!-- نهاية جدول التقارير -->
+   
+
+
+
+
+
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4" crossorigin="anonymous"></script>
+  </body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

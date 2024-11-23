@@ -1,0 +1,24 @@
+<table>
+    <tr>
+      <th>Date</th>
+      <th>Time</th>
+      <!-- قائمة بالحقول الأخرى -->
+      ...
+    </tr>
+    <tr>
+      <td>{{ report.date }}</td>
+      <td>{{ report.time }}</td>
+      <!-- بيانات الحقول الأخرى -->
+      ...
+    </tr>
+  </table>
+  <h3>Selected Notes:</h3>
+  <table>
+    <!-- قائمة بالملاحظات المختارة -->
+    {% for note in report.observations.all %}
+      <tr>
+        <td>{{ note }}</td>
+      </tr>
+    {% endfor %}
+  </table>
+  

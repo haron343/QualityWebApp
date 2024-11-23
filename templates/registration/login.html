@@ -1,0 +1,48 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static 'css/bootstrap.css' %}">
+    <title>Document</title>
+</head>
+<body>
+
+
+<h1>login</h1>
+
+
+<form class="form" method="POST" novalidate>
+ 
+<div class="container">
+  <div class="row">
+
+    <div class="col-12 mt-4 mx-auto">
+      {% csrf_token %}
+      {{form.as_p}}
+    </div>
+   
+    
+    
+  <button class="btn btn-primary" type="submit" >
+    Submit
+  </button>
+</div>
+    
+ 
+</form>
+
+
+
+
+
+
+
+<script src="{% static 'js/bootstrap.js' %}"></script>
+</body>
+</html>
+
+
+
